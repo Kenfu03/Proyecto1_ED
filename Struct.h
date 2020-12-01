@@ -8,9 +8,9 @@ struct NodoLista;
 struct ListaCircular;
 struct Cola;
 struct ColaPrioridad;
-struct Galletas;
-struct Paqueticos;
-struct Tubos;
+struct Galleta;
+struct Paquetico;
+struct Tubo;
 struct Paquete;
 
 struct NodoC{
@@ -176,9 +176,13 @@ struct ListaCircular{
 	   }
 };*/
 
-struct Galletas{
+struct Galleta{
 	int masa;
 	int choco;
+	Galleta(int masa, int choco){
+		this->masa = masa;
+		this->choco = choco;
+	}
 };
 
 
@@ -210,6 +214,5 @@ struct planificador{
 		this->litpk = litpk;
 		this->tb = tb;
 	}
-	
 };
 
