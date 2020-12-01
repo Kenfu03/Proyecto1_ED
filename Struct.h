@@ -2,7 +2,8 @@
 #include <iostream>
 
 using namespace std;
-struct NodoCola;
+
+struct NodoC;
 struct NodoLista;
 struct ListaCircular;
 struct Cola;
@@ -13,18 +14,38 @@ struct Tubos;
 struct Paquete;
 // estructura nodo para lista simple
 
-struct NodoCola {
-       int dato; // parte de datos
-       NodoCola* siguiente;// puntero para enlazar nodos
-       // constructor
-       
-       NodoCola(int d) 
-       {
-                dato = d; // asigna los datos 
-                siguiente = NULL; // sig es null
-       }
-      void imprimir();
+struct NodoC{
+	int dato; 
+    NodoC* next;
+    
+    NodoC(){          
+	}
+	
+    NodoC(int d){
+		dato = d;
+        next = NULL;
+                
+	}
+	void print(){
+		cout << "Dato: " << dato << endl;
+	}
 };
+
+struct Cola{
+    NodoC * first;
+    
+    Cola(){
+        first = NULL;
+    }
+    
+    void push (int dato);
+    NodoC* pull();
+    NodoC* vFirst();
+    bool isEmpty(void);
+    void print(void);
+    
+};
+
 
 struct NodoLista{
 	int dato;
@@ -123,40 +144,7 @@ struct ListaCircular{
 	}
 };
 
-struct Cola {
-       // solo con pN es suficiente
-       NodoCola * frente; // ERROR sin ultimo nodo
-       Cola()
-       {
-            frente = NULL;
-       }
-       // encabezados de funcion
-       void encolar (int dato);
-       NodoCola* desencolar (void);
-       NodoCola* verFrente(void);
-       bool vacia(void);
-       void imprimir(void);
-
-       void encolarPersona (Persona * p){
-       		if (vacia())
-		        frente = new Nodo (p);
-		    else 
-		    {
-		            // referencia al primero para recorrer la lista
-		            NodoCola* actual = frente;
-		            // recorre la lista hasta llegar al penultimo nodo
-		            while (actual->siguiente != NULL)
-		                          actual = actual->siguiente; 
-		              
-		            // Crea nuevo nodo, lo apunta con uN  
-		            NodoCola* nuevo = new Nodo (p);
-		            //le quita el enlace al que era ultimo
-		            actual->siguiente = nuevo;
-		    }
-	   }
-};
-
-struct ColaPrioridad {
+/*struct ColaPrioridad {
        // solo con pN es suficiente
        Cola * colaRegular;
        Cola * colaEspecial;
@@ -187,7 +175,7 @@ struct ColaPrioridad {
 	   	cout << endl << endl << "Cola: ";
 	   	colaRegular->imprimir();
 	   }
-};
+};*/
 
 struct Galletas{
 	int masa;
