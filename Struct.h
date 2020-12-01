@@ -8,12 +8,10 @@ struct NodoLista;
 struct ListaCircular;
 struct Cola;
 struct ColaPrioridad;
-struct Paquetico;
-struct Tubo;
+struct Galletas;
+struct Paqueticos;
+struct Tubos;
 struct Paquete;
-struct Galleta;
-struct Planificador;
-// estructura nodo para lista simple
 
 struct NodoC{
 	int dato; 
@@ -128,7 +126,7 @@ struct ListaCircular{
 	NodoLista * eliminar(int _dato){
 		NodoLista * eliminado = buscar(_dato);
 		
-		if (eliminado != NULL){ // sí lo encontró
+		if (eliminado != NULL){ // sï¿½ lo encontrï¿½
 			if (primerNodo->siguiente == primerNodo) // solo un elemento
 				primerNodo = eliminado->siguiente = eliminado->anterior = NULL;
 			else{
@@ -178,13 +176,9 @@ struct ListaCircular{
 	   }
 };*/
 
-struct Galleta{
+struct Galletas{
 	int masa;
 	int choco;
-	Galleta(int masa, int choco){
-		this->masa = masa;
-		this->choco = choco;
-	}
 };
 
 
