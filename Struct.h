@@ -206,13 +206,27 @@ struct Paquete{
 
 struct planificador{
 	//Define la cantidad de paquetes que se van a crear
-	Paquete* pk;
-	Paquetico* litpk;
-	Tubo* tb;
-	planificador(Paquete * pk,Paquetico* litpk,Tubo* tb){
+	int pk;
+	int litpk;
+	int tb;
+	planificador(int pk,int litpk,int tb){
 		this->pk = pk;
 		this->litpk = litpk;
 		this->tb = tb;
+	}
+	
+	int TotalGalletas(){
+		int TotalGalle = 0;
+		for(int i=0;i < pk;i++) {
+			TotalGalle++;
+		}
+		for(int i=0;i < litpk;i++) {
+			TotalGalle++;
+		}
+		for(int i=0;i < tb;i++) {
+			TotalGalle++;
+		}
+		return TotalGalle;
 	}
 };
 
