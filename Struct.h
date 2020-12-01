@@ -189,28 +189,29 @@ struct Galleta{
 
 
 struct Paquetico{
-	Galleta unidad;
+	Galleta* unidad;
 	Paquetico(){
 	}
+	
 };
 struct Tubo{
-	Galleta unidad;
+	Galleta* unidad;
 	Tubo(){
 	}
 };
 
 struct Paquete{
-	Galleta unidad;
+	Galleta* unidad;
 	Paquete(){
 	}
 };
 
 struct planificador{
 	//Define la cantidad de paquetes que se van a crear
-	Paquete pk;
-	Paquetico litpk;
-	Tubo tb;
-	planificador(Paquete pk,Paquetico litpk,Tubo tb){
+	Paquete* pk;
+	Paquetico* litpk;
+	Tubo* tb;
+	planificador(Paquete * pk,Paquetico* litpk,Tubo* tb){
 		this->pk = pk;
 		this->litpk = litpk;
 		this->tb = tb;
