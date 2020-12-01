@@ -29,7 +29,6 @@ struct NodoC{
 		cout << "Dato: " << dato << endl;
 	}
 };
-
 struct Cola{
     NodoC * first;
     
@@ -44,8 +43,6 @@ struct Cola{
     void print(void);
     
 };
-
-
 struct NodoLista{
 	int dato;
 	NodoLista * siguiente;
@@ -56,7 +53,6 @@ struct NodoLista{
 		dato = d;
 		siguiente = anterior = NULL;
 	}
-	
 	NodoLista()
 	{
 		dato = 0;
@@ -68,14 +64,11 @@ struct NodoLista{
 		cout << "<-|" << dato << "|-> ";
 	}
 };
-
 struct ListaCircular{
 	NodoLista * primerNodo;
-
 	ListaCircular(){ 
 		primerNodo = NULL;
 	}	
-	
 	// INSERTAR AL INICIO
 	void insertar(int d)
 	{
@@ -142,40 +135,6 @@ struct ListaCircular{
 		return eliminado;
 	}
 };
-
-/*struct ColaPrioridad {
-       // solo con pN es suficiente
-       Cola * colaRegular;
-       Cola * colaEspecial;
-       
-       ColaPrioridad()
-       {
-            colaRegular = new Cola();
-            colaEspecial = new Cola();
-       }
-       
-       // encabezados de funcion
-       void encolar (Persona * p){
-       		if (p->priority == 1)
-       			colaRegular->encolarPersona(p);
-       		else
-       			colaEspecial->encolarPersona(p);
-	   }
-       Nodo* desencolar (){
-       		if (!colaEspecial->vacia())
-       			return colaEspecial->desencolar();
-       		else
-       			return colaRegular->desencolar();
-	   }
-	   
-	   void imprimir(){
-	   	cout <<"Cola prioridad: " << endl;
-	   	colaEspecial->imprimir();
-	   	cout << endl << endl << "Cola: ";
-	   	colaRegular->imprimir();
-	   }
-};*/
-
 struct Galleta{
 	int masa;
 	int choco;
@@ -184,23 +143,48 @@ struct Galleta{
 		this->choco = choco;
 	}
 };
-
-
 struct Paquetico{
-	Galleta* unidad;
+	int cantidad;
 	Paquetico(){
 	}
-	
+	void add(){
+		cantidad++;
+	}
+	bool listo(){
+		if(cantidad == 4){
+			return true;
+		}
+		return false;
+	}
 };
+
 struct Tubo{
-	Galleta* unidad;
+	int cantidad;
 	Tubo(){
+	}
+	void add(){
+		cantidad++;
+	}
+	bool listo(){
+		if(cantidad == 16){
+			return true;
+		}
+		return false;
 	}
 };
 
 struct Paquete{
-	Galleta* unidad;
+	int cantiPaqueticos;
 	Paquete(){
+	}
+	void add(){
+		cantiPaqueticos++;
+	}
+	bool listo(){
+		if(cantiPaqueticos == 10){
+			return true;
+		}
+		return false;
 	}
 };
 
@@ -214,19 +198,13 @@ struct planificador{
 		this->litpk = litpk;
 		this->tb = tb;
 	}
-	
 	int TotalGalletas(){
-		int TotalGalle = 0;
-		for(int i=0;i < pk;i++) {
-			TotalGalle++;
-		}
-		for(int i=0;i < litpk;i++) {
-			TotalGalle++;
-		}
-		for(int i=0;i < tb;i++) {
-			TotalGalle++;
-		}
-		return TotalGalle;
+		return (4 * pk)+(4 * litpk)+(16 * tb);
 	}
+};
+struct Mezcladora{
+	int min;
+	int max;
+	
 };
 
