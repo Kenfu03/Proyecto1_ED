@@ -8,11 +8,11 @@ struct NodoLista;
 struct ListaCircular;
 struct Cola;
 struct ColaPrioridad;
-struct Galletas;
-struct Paqueticos;
-struct Tubos;
+struct Paquetico;
+struct Tubo;
 struct Paquete;
-struct planificador;
+struct Galleta;
+struct Planificador;
 // estructura nodo para lista simple
 
 struct NodoC{
@@ -181,34 +181,39 @@ struct ListaCircular{
 struct Galleta{
 	int masa;
 	int choco;
-	galleta(int masa, int choco){
-		this.masa = masa;
-		this.choco = choco
+	Galleta(int masa, int choco){
+		this->masa = masa;
+		this->choco = choco;
 	}
 };
 
 
-struct Paqueticos{
-	Galletas unidad;
-	
+struct Paquetico{
+	Galleta unidad;
+	Paquetico(){
+	}
 };
-struct Tubos{
-	Galletas unidad;
+struct Tubo{
+	Galleta unidad;
+	Tubo(){
+	}
 };
 
 struct Paquete{
-	Galletas unidad;
+	Galleta unidad;
+	Paquete(){
+	}
 };
 
 struct planificador{
 	//Define la cantidad de paquetes que se van a crear
 	Paquete pk;
-	Paqueticos litpk;
-	Tubos tb;
-	planificador(Paquete pk,Paqueticos litpk,Tubos tb){
-		this.pk = pk;
-		this.litpk = litpk;
-		this.tb = tb;
+	Paquetico litpk;
+	Tubo tb;
+	planificador(Paquete pk,Paquetico litpk,Tubo tb){
+		this->pk = pk;
+		this->litpk = litpk;
+		this->tb = tb;
 	}
 	
 };
