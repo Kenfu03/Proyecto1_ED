@@ -11,6 +11,7 @@ struct Galletas;
 struct Paqueticos;
 struct Tubos;
 struct Paquete;
+struct planificador;
 // estructura nodo para lista simple
 
 struct NodoCola {
@@ -189,14 +190,19 @@ struct ColaPrioridad {
 	   }
 };
 
-struct Galletas{
+struct Galleta{
 	int masa;
 	int choco;
+	galleta(int masa, int choco){
+		this.masa = masa;
+		this.choco = choco
+	}
 };
 
 
 struct Paqueticos{
 	Galletas unidad;
+	
 };
 struct Tubos{
 	Galletas unidad;
@@ -205,3 +211,17 @@ struct Tubos{
 struct Paquete{
 	Galletas unidad;
 };
+
+struct planificador{
+	//Define la cantidad de paquetes que se van a crear
+	Paquete pk;
+	Paqueticos litpk;
+	Tubos tb;
+	planificador(Paquete pk,Paqueticos litpk,Tubos tb){
+		this.pk = pk;
+		this.litpk = litpk;
+		this.tb = tb;
+	}
+	
+};
+
