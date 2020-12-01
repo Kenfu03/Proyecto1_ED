@@ -9,7 +9,6 @@ int main(int argc, char** argv) {
 	col->push(3);
 	col->push(4);
 	col->push(5);
-	col->vFirst()->print();
 	col->print();
 	
 	return 0;
