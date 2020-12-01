@@ -11,5 +11,8 @@ int main(int argc, char** argv) {
 	col->push(5);
 	col->print();
 	
+	planificador * plani = new planificador(0,100,250);
+	int canti = plani->TotalGalletas();
+	cout << "Total de galletas: " << canti;
 	return 0;
 }
