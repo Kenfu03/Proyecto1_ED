@@ -8,9 +8,9 @@ struct NodoLista;
 struct ListaCircular;
 struct Cola;
 struct ColaPrioridad;
-struct Galletas;
-struct Paqueticos;
-struct Tubos;
+struct Galleta;
+struct Paquetico;
+struct Tubo;
 struct Paquete;
 
 struct NodoC{
@@ -126,7 +126,7 @@ struct ListaCircular{
 	NodoLista * eliminar(int _dato){
 		NodoLista * eliminado = buscar(_dato);
 		
-		if (eliminado != NULL){ // sí lo encontró
+		if (eliminado != NULL){ // sï¿½ lo encontrï¿½
 			if (primerNodo->siguiente == primerNodo) // solo un elemento
 				primerNodo = eliminado->siguiente = eliminado->anterior = NULL;
 			else{
@@ -176,19 +176,57 @@ struct ListaCircular{
 	   }
 };*/
 
-struct Galletas{
+struct Galleta{
 	int masa;
 	int choco;
+	Galleta(int masa, int choco){
+		this->masa = masa;
+		this->choco = choco;
+	}
 };
 
 
-struct Paqueticos{
-	Galletas unidad;
+struct Paquetico{
+	Galleta* unidad;
+	Paquetico(){
+	}
+	
 };
-struct Tubos{
-	Galletas unidad;
+struct Tubo{
+	Galleta* unidad;
+	Tubo(){
+	}
 };
 
 struct Paquete{
-	Galletas unidad;
+	Galleta* unidad;
+	Paquete(){
+	}
 };
+
+struct planificador{
+	//Define la cantidad de paquetes que se van a crear
+	int pk;
+	int litpk;
+	int tb;
+	planificador(int pk,int litpk,int tb){
+		this->pk = pk;
+		this->litpk = litpk;
+		this->tb = tb;
+	}
+	
+	int TotalGalletas(){
+		int TotalGalle = 0;
+		for(int i=0;i < pk;i++) {
+			TotalGalle++;
+		}
+		for(int i=0;i < litpk;i++) {
+			TotalGalle++;
+		}
+		for(int i=0;i < tb;i++) {
+			TotalGalle++;
+		}
+		return TotalGalle;
+	}
+};
+
