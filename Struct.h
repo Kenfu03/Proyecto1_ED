@@ -10,6 +10,7 @@ struct ListaCircular;
 struct Cola;
 struct ColaPrioridad;
 struct Galleta;
+
 struct NodoC{
 	int dato; 
     NodoC* next;
@@ -145,14 +146,13 @@ struct ListaCircular{
 	}
 	
 	// IMPRIMIR LISTA
-	/*
-	NodoLista * buscar(int _dato)
+    NodoLista * buscar(string nombre)
 	{
 		if (primerNodo != NULL){
 			
 			NodoLista * tmp = primerNodo;
 			do{
-				if (tmp->dato == _dato)
+                if (tmp->paquete->nombre == nombre)
 					return tmp;
 				tmp = tmp->siguiente;
 			}while(tmp!=primerNodo);
@@ -160,9 +160,9 @@ struct ListaCircular{
 		}
 		return NULL;
 	}
-	
-	NodoLista * eliminar(int _dato){
-		NodoLista * eliminado = buscar(_dato);
+
+    NodoLista * eliminar(string nombre){
+        NodoLista * eliminado = buscar(nombre);
 		
 		if (eliminado != NULL){ // s� lo encontr�
 			if (primerNodo->siguiente == primerNodo) // solo un elemento
@@ -179,7 +179,6 @@ struct ListaCircular{
 		}
 		return eliminado;
 	}
-	*/
 };
 struct Receta{
 	int masa;
@@ -192,12 +191,13 @@ struct Receta{
 
 struct planificador{
 	ListaCircular * lc;
+
     planificador(){
 		lc = new ListaCircular();
 		lc->insertar("Paquetico",100);
 		lc->insertar("Tubo",250);
 	}
-	
+
 	void insertarMas(){
 		//Aqui debe de tener algo en pantalla que me pida el tipo y la canitidad a sumar;
 		lc->insertar("Paquete",4);
@@ -212,6 +212,7 @@ struct Mez{
 		this->max = max;
 	}
 };
+
 struct MezChocolate{
 	int min;
 	int max;

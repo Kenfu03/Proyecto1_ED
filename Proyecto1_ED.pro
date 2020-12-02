@@ -11,10 +11,12 @@ CONFIG += c++11
 SOURCES += \
     Colas.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    thread.cpp
 
 HEADERS += \
     Struct.h \
+    Thread.h \
     mainwindow.h
 
 FORMS += \
