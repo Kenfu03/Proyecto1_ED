@@ -192,7 +192,7 @@ struct Receta{
 
 struct planificador{
 	ListaCircular * lc;
-	planificador(){
+    planificador(){
 		lc = new ListaCircular();
 		lc->insertar("Paquetico",100);
 		lc->insertar("Tubo",250);
