@@ -157,7 +157,6 @@ struct Paquetico{
 		return false;
 	}
 };
-
 struct Tubo{
 	int cantidad;
 	Tubo(){
@@ -172,7 +171,6 @@ struct Tubo{
 		return false;
 	}
 };
-
 struct Paquete{
 	int cantiPaqueticos;
 	Paquete(){
@@ -187,7 +185,6 @@ struct Paquete{
 		return false;
 	}
 };
-
 struct planificador{
 	//Define la cantidad de paquetes que se van a crear
 	int pk;
