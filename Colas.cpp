@@ -1,4 +1,4 @@
-
+/*
 #include "Struct.h"
 
 void Cola::push (int dato){
@@ -64,4 +64,4 @@ NodoC* Cola::vFirst(){
 	
       return first;      
 }
-
+*/
