@@ -192,16 +192,21 @@ struct Receta{
 struct planificador{
 	ListaCircular * lc;
 
-    planificador(){
+    planificador(int tito, int te, int tubo){
 		lc = new ListaCircular();
-		lc->insertar("Paquetico",100);
-		lc->insertar("Tubo",250);
+        lc->insertar("Paquetico",tito);
+        lc->insertar("Paquete",te);
+        lc->insertar("Tubo",tubo);
 	}
 
 	void insertarMas(){
 		//Aqui debe de tener algo en pantalla que me pida el tipo y la canitidad a sumar;
 		lc->insertar("Paquete",4);
 	}
+
+    int totalGalle(){
+        return lc->totalGalletas();
+    }
 };
 //El carrito debe de ser configurable en sus cantidades y este debe de ser un hilo
 struct Mez{
