@@ -59,6 +59,18 @@ void Cola::print(){
     cout << "Final" << endl;
 }
 
+bool Cola::isIn(int dato){
+    NodoC* tmp = first;
+
+    while (tmp != NULL){
+
+        if (tmp->dato == dato){
+            return true;
+        }
+        tmp = tmp->next;
+    }
+    return false;
+}
 
 NodoC* Cola::vFirst(){
 	
