@@ -1,5 +1,8 @@
 #include <cstdlib>
 #include <iostream>
+#include "mainwindow.h"
+#include "ui_mainwindow.h"
+
 
 using namespace std;
 
@@ -102,6 +105,7 @@ struct Cola{
     NodoC<Data>* vFirst(){
           return first;
     }
+    
 };
 
 struct Paquetes{
@@ -284,13 +288,45 @@ struct Mixer{
 		this->min = min;
 		this->max = max;
         this->gProcesar = gProcesar;
+    }
 
-        this->receta = receta;
-        this->carro = carro;
+};
+
+struct Mez1{
+	int max;
+    int cantAct;
+
+    Mez1(int max){
+		this->max = max;
 	}
 
-    void procesar(){
+    int recargar(int _masa, int _masaMin){
+        int cantSum = cantAct += _masa;
 
+        if (isEmpty() || isInsuficiente(_masaMin)){
+            if (cantSum > max){
+                int devolver = cantSum - max;
+                cantAct = max;
+                return devolver;
+            }
+        }
+    }
+
+    bool isInsuficiente(int _masaMin){
+        if (cantAct < _masaMin){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    bool isEmpty(){
+        if (cantAct == 0){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 };
 
@@ -309,4 +345,24 @@ struct Repartidor{
 };
 struct Ensambladora{
 	
+};
+
+struct Carrito{
+    int cantCho;
+    int cantMasa;
+    Cola<int> * listaSolicitud = new Cola<int>();
+
+    Carrito(){
+    }
+
+    Carrito(int _Cho, int _Masa){
+        this->cantCho = _Cho;
+        this->cantMasa = _Masa;
+    }
+
+    bool isEmpty();
+    void recargar(int _Cho, int _Masa);
+    void solicitarCarga(int _Mezc);
+    void verificarCarga();
+
 };

@@ -10,6 +10,7 @@ CONFIG += c++11
 
 SOURCES += \
     Colas.cpp \
+    carrito.cpp \
     main.cpp \
     mainwindow.cpp \
     thread.cpp
