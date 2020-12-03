@@ -4,48 +4,110 @@
 using namespace std;
 
 struct Paquetes;
+template <typename Data>
 struct NodoC;
+template <typename Data>
+struct Cola;
 struct NodoLista;
 struct ListaCircular;
-struct Cola;
-struct ColaPrioridad;
 struct Galleta;
+struct Repartidor;
+struct Mixer;
 
+
+template <typename Data>
 struct NodoC{
-	int dato; 
-    NodoC* next;
-    
+    Data data;
+    NodoC * next;
+
     NodoC(){          
 	}
 	
-    NodoC(int d){
-		dato = d;
+    NodoC(Data d){
+        data = d;
         next = NULL;
                 
 	}
+
+    NodoC(Data _data, NodoC<Data> * _next){
+        data = _data;
+        next = _next;
+    }
+
 	void print(){
-		cout << "Dato: " << dato << endl;
+        cout << "Dato: " << data << endl;
 	}
+
+
 };
+
+template <typename Data>
 struct Cola{
-    NodoC * first;
+    NodoC<Data> * first;
     
     Cola(){
         first = NULL;
     }
     
-    void push (int dato);
-    NodoC* pull();
-    NodoC* vFirst();
-    bool isEmpty(void);
-    void print(void);
-    
+    void push (Data dato){
+        if (isEmpty()){
+            first = new NodoC<Data>(dato);
+        }
+        else{
+            NodoC<Data>* tmp = first;
+            while (tmp->next != NULL){
+                tmp = tmp->next;
+            }
+
+            NodoC<Data>* _new = new NodoC<Data>(dato);
+            tmp->next = _new;
+        }
+    }
+
+    NodoC<Data> * pull(){
+        if (isEmpty()){
+             return NULL;
+        }
+        else{
+
+            NodoC<Data>* _del = first;
+            first = first->next;
+            _del->next = NULL;
+            return _del;
+        }
+    }
+
+    bool isEmpty(){
+        if (first == NULL){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    void print(){
+
+        cout << "First" << endl;
+        NodoC<Data>* tmp = first;
+
+        while (tmp != NULL){
+            tmp->print();
+            tmp = tmp->next;
+        }
+
+        cout << "Final" << endl;
+    }
+
+    NodoC<Data>* vFirst(){
+          return first;
+    }
 };
 
 struct Paquetes{
 	string nombre;
 	int cantGalle;
-	
+
 	Paquetes(string nombre, int cantGalle){
 		this->nombre = nombre;
 		this->cantGalle = cantGalle;
@@ -80,6 +142,7 @@ struct NodoLista{
 	}
 	
 };
+
 struct ListaCircular{
 	NodoLista * primerNodo;
 	ListaCircular(){ 
@@ -105,7 +168,7 @@ struct ListaCircular{
 	void insertar(string nombre, int cantidad){
 		if(nombre == "Paquetico"){
 			for(int i = 0;i<cantidad;i++){
-				insertarAUX( new Paquetes("Paquetico",4) );
+                insertarAUX( new Paquetes(nombre,4) );
 			}
 		}
 		if(nombre == "Tubo"){
@@ -180,6 +243,7 @@ struct ListaCircular{
 		return eliminado;
 	}
 };
+
 struct Receta{
 	int masa;
 	int choco;
@@ -203,26 +267,41 @@ struct planificador{
 		lc->insertar("Paquete",4);
 	}
 };
+
 //El carrito debe de ser configurable en sus cantidades y este debe de ser un hilo
-struct Mez{
+struct Mixer{
+    Receta  * receta;
+    Repartidor * carro;
 	int min;
 	int max;
-	Mez(int min, int max){
+    int gProcesar;
+    Mixer(int gProcesar, int min, int max,Receta * receta, Repartidor * carro){
 		this->min = min;
 		this->max = max;
+        this->gProcesar = gProcesar;
+
+        this->receta = receta;
+        this->carro = carro;
 	}
+
+    void procesar(){
+
+    }
 };
 
-struct MezChocolate{
-	int min;
-	int max;
-	MezChocolate(int min, int max){
-		this->min = min;
-		this->max = max;
-	}
+struct Repartidor{
+    int gramos;
+    Repartidor(int gramos){
+        this->gramos = gramos;
+    }
+    int entrega(int cantidad){
+        if (gramos <= cantidad){
+            cantidad -= cantidad-gramos;
+        }
+        return cantidad;
+
+    }
 };
-
-
 struct Ensambladora{
 	
 };
