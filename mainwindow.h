@@ -16,7 +16,13 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_pushButton_clicked();
+    void on_modMaqui_clicked();
+
+    void on_apliCambio_clicked();
+
+    void on_startEjec_clicked();
+
+    void on_stopEjec_clicked();
 
 private:
     Ui::MainWindow *ui;

@@ -6,19 +6,19 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1282</width>
-    <height>626</height>
+    <width>1518</width>
+    <height>873</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QPushButton" name="startEjec">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>140</y>
+      <x>680</x>
+      <y>90</y>
       <width>161</width>
       <height>28</height>
      </rect>
@@ -27,17 +27,17 @@
      <string>Iniciar Ejecucion</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit">
+   <widget class="QLineEdit" name="InTito">
     <property name="geometry">
      <rect>
-      <x>70</x>
+      <x>100</x>
       <y>40</y>
       <width>51</width>
       <height>22</height>
      </rect>
     </property>
    </widget>
-   <widget class="QLabel" name="label">
+   <widget class="QLabel" name="TituloGalle">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -50,7 +50,7 @@
      <string>Tipos de Galletas (Cantidad en numero)</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_2">
+   <widget class="QLabel" name="LTito">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -63,7 +63,7 @@
      <string>Paquetito</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_3">
+   <widget class="QLabel" name="LTe">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -76,7 +76,7 @@
      <string>Paquete de 10</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit_2">
+   <widget class="QLineEdit" name="InTe">
     <property name="geometry">
      <rect>
       <x>100</x>
@@ -86,7 +86,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit_3">
+   <widget class="QLineEdit" name="InTubo">
     <property name="geometry">
      <rect>
       <x>100</x>
@@ -99,24 +99,24 @@
      <string/>
     </property>
    </widget>
-   <widget class="QLabel" name="label_4">
+   <widget class="QLabel" name="LTubo">
     <property name="geometry">
      <rect>
       <x>10</x>
       <y>100</y>
-      <width>91</width>
+      <width>71</width>
       <height>16</height>
      </rect>
     </property>
     <property name="text">
-     <string>Paquete de 10</string>
+     <string>Tubo de 16</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_5">
+   <widget class="QLabel" name="TotalGalle">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>190</y>
+      <x>470</x>
+      <y>10</y>
       <width>121</width>
       <height>16</height>
      </rect>
@@ -125,11 +125,11 @@
      <string>Total de Galletas</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_6">
+   <widget class="QLabel" name="resTotal">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>220</y>
+      <x>470</x>
+      <y>30</y>
       <width>121</width>
       <height>16</height>
      </rect>
@@ -138,13 +138,278 @@
      <string/>
     </property>
    </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>120</y>
+      <width>1491</width>
+      <height>711</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>TextLabel</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="conMez1">
+    <property name="geometry">
+     <rect>
+      <x>350</x>
+      <y>250</y>
+      <width>113</width>
+      <height>22</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="conMez2">
+    <property name="geometry">
+     <rect>
+      <x>350</x>
+      <y>400</y>
+      <width>113</width>
+      <height>22</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="conMezCho">
+    <property name="geometry">
+     <rect>
+      <x>350</x>
+      <y>560</y>
+      <width>113</width>
+      <height>22</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="conCarrito">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>170</x>
+      <y>330</y>
+      <width>113</width>
+      <height>22</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="conBandMez">
+    <property name="geometry">
+     <rect>
+      <x>510</x>
+      <y>350</y>
+      <width>113</width>
+      <height>22</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="conBandCho">
+    <property name="geometry">
+     <rect>
+      <x>510</x>
+      <y>510</y>
+      <width>113</width>
+      <height>22</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="conEnsam">
+    <property name="geometry">
+     <rect>
+      <x>660</x>
+      <y>400</y>
+      <width>113</width>
+      <height>22</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="conHorno">
+    <property name="geometry">
+     <rect>
+      <x>860</x>
+      <y>400</y>
+      <width>113</width>
+      <height>22</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="conBand">
+    <property name="geometry">
+     <rect>
+      <x>1010</x>
+      <y>400</y>
+      <width>113</width>
+      <height>22</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="conSup2">
+    <property name="geometry">
+     <rect>
+      <x>1060</x>
+      <y>280</y>
+      <width>113</width>
+      <height>22</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="conSup1">
+    <property name="geometry">
+     <rect>
+      <x>940</x>
+      <y>280</y>
+      <width>113</width>
+      <height>22</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="modMaqui">
+    <property name="geometry">
+     <rect>
+      <x>1340</x>
+      <y>10</y>
+      <width>141</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Modificar Maquinas</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="apliCambio">
+    <property name="geometry">
+     <rect>
+      <x>1340</x>
+      <y>50</y>
+      <width>141</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Aplicar Cambios</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="conEmpaca">
+    <property name="geometry">
+     <rect>
+      <x>1190</x>
+      <y>430</y>
+      <width>113</width>
+      <height>22</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="stopEjec">
+    <property name="geometry">
+     <rect>
+      <x>680</x>
+      <y>50</y>
+      <width>161</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Detener Ejecucion</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="LMasa">
+    <property name="geometry">
+     <rect>
+      <x>260</x>
+      <y>70</y>
+      <width>91</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Masa</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="Inmasa">
+    <property name="geometry">
+     <rect>
+      <x>350</x>
+      <y>70</y>
+      <width>51</width>
+      <height>22</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="InChoc">
+    <property name="geometry">
+     <rect>
+      <x>350</x>
+      <y>40</y>
+      <width>51</width>
+      <height>22</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="LChoc">
+    <property name="geometry">
+     <rect>
+      <x>260</x>
+      <y>40</y>
+      <width>61</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Chocolate</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="RecetaGalle">
+    <property name="geometry">
+     <rect>
+      <x>260</x>
+      <y>10</y>
+      <width>241</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Receta de galleta (en gramos)</string>
+    </property>
+   </widget>
+   <zorder>label</zorder>
+   <zorder>startEjec</zorder>
+   <zorder>InTito</zorder>
+   <zorder>TituloGalle</zorder>
+   <zorder>LTito</zorder>
+   <zorder>LTe</zorder>
+   <zorder>InTe</zorder>
+   <zorder>InTubo</zorder>
+   <zorder>LTubo</zorder>
+   <zorder>TotalGalle</zorder>
+   <zorder>resTotal</zorder>
+   <zorder>conMez1</zorder>
+   <zorder>conMez2</zorder>
+   <zorder>conMezCho</zorder>
+   <zorder>conCarrito</zorder>
+   <zorder>conBandMez</zorder>
+   <zorder>conBandCho</zorder>
+   <zorder>conEnsam</zorder>
+   <zorder>conHorno</zorder>
+   <zorder>conBand</zorder>
+   <zorder>conSup2</zorder>
+   <zorder>conSup1</zorder>
+   <zorder>modMaqui</zorder>
+   <zorder>apliCambio</zorder>
+   <zorder>conEmpaca</zorder>
+   <zorder>stopEjec</zorder>
+   <zorder>LMasa</zorder>
+   <zorder>Inmasa</zorder>
+   <zorder>InChoc</zorder>
+   <zorder>LChoc</zorder>
+   <zorder>RecetaGalle</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1282</width>
+     <width>1518</width>
      <height>26</height>
     </rect>
    </property>
