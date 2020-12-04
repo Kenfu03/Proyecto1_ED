@@ -2,6 +2,7 @@
 #include <iostream>
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include <QDebug>
 
 
 using namespace std;
@@ -40,7 +41,7 @@ struct NodoC{
     }
 
 	void print(){
-        cout << "Dato: " << data << endl;
+        qDebug() <<  "Dato: " << data;
 	}
 
 
@@ -59,12 +60,16 @@ struct Cola{
             first = new NodoC<Data>(dato);
         }
         else{
-            NodoC<Data>* tmp = first;
+            NodoC<Data> * tmp = first;
             while (tmp->next != NULL){
                 tmp = tmp->next;
             }
+<<<<<<< HEAD
 
             NodoC<Data>* _new = new NodoC<Data>(dato);
+=======
+            NodoC<Data> * _new = new NodoC<Data>(dato);
+>>>>>>> NikoTico
             tmp->next = _new;
         }
     }
@@ -74,8 +79,12 @@ struct Cola{
              return NULL;
         }
         else{
+<<<<<<< HEAD
 
             NodoC<Data>* _del = first;
+=======
+            NodoC<Data> * _del = first;
+>>>>>>> NikoTico
             first = first->next;
             _del->next = NULL;
             return _del;
@@ -92,16 +101,24 @@ struct Cola{
     }
 
     void print(){
+<<<<<<< HEAD
 
         cout << "First" << endl;
+=======
+        qDebug() <<  "First" << endl;
+>>>>>>> NikoTico
         NodoC<Data>* tmp = first;
 
         while (tmp != NULL){
             tmp->print();
             tmp = tmp->next;
         }
+<<<<<<< HEAD
 
         cout << "Final" << endl;
+=======
+         qDebug() << "Final";
+>>>>>>> NikoTico
     }
 
     NodoC<Data>* vFirst(){
@@ -119,6 +136,19 @@ struct Cola{
         }
         return false;
     }
+<<<<<<< HEAD
+=======
+
+    int tamano(){
+        int tama = 0;
+        NodoC<Data>* tmp = first;
+        while (tmp != NULL){
+            tama++;
+            tmp = tmp->next;
+        }
+        return tama;
+    }
+>>>>>>> NikoTico
 };
 
 struct Paquetes{
@@ -370,6 +400,7 @@ struct planificador{
     int capacMez1, capacMez2, capacMezCho, capacCarrito;
 
 
+<<<<<<< HEAD
     planificador(int tito, int te, int tubo, int capMez1, int capMez2, int capMezCho, int capCarrito){
 		lc = new ListaCircular();
         lc->insertar("Paquetico",tito);
@@ -380,12 +411,20 @@ struct planificador{
         capacMezCho = capMezCho;
         capacCarrito = capCarrito;
 	}
+=======
+struct Banda{
+    int tranporte;
+    int carga;
+    int limite;
+    Cola<int> *  cbanda = new Cola<int>();
+>>>>>>> NikoTico
 
 	void insertarMas(){
 		//Aqui debe de tener algo en pantalla que me pida el tipo y la canitidad a sumar;
 		lc->insertar("Paquete",4);
 	}
 
+<<<<<<< HEAD
     int totalGalle(){
         return lc->totalGalletas();
     }
@@ -396,6 +435,29 @@ struct planificador{
         Mezcladora2 = new Mez1(capacMez2, Carro, 222);
         MezcladoraCho = new Mez1(capacMezCho, Carro, 333);
 
+=======
+    bool addBanda(int dato){
+        if (cbanda->tamano() < limite){
+            cbanda->push(dato);
+            carga += dato;
+            return true;
+        }
+        return false;
+    }
+
+    int entregar(){
+       if(cbanda->vFirst() != NULL){
+            int descarga = cbanda->pull()->data;
+            carga -= descarga;
+            return descarga;
+       }
+       return 0;
+    }
+
+    void estadisticas(){
+        cout << "Maximo de galletas: " << limite << "Cantidad traspotada al momento: "<< cbanda->tamano() << endl;
+    }
+>>>>>>> NikoTico
 
     }
 };
