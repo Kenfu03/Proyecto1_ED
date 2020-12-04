@@ -9,6 +9,15 @@ bool Carrito::isEmpty(){
     }
 }
 
+int Carrito::getCantCho(){
+    return cantCho;
+}
+
+int Carrito::getCantMasa(){
+    return cantMasa;
+}
+
+
 void Carrito::recargar(int _Cho, int _Masa){
     cantCho += _Cho;
     cantMasa += _Masa;
@@ -26,7 +35,13 @@ void Carrito::verificarCarga(){
     }
     else{
         if (listaSolicitud->vFirst()->data == 111){
-
+            Mezcladora1->recargar(cantMasa);
+        }
+        else if (listaSolicitud->vFirst()->data == 222){
+            Mezcladora2->recargar(cantMasa);
+        }
+        else{
+            MezcladoraCho->recargar(cantCho);
         }
     }
 }
