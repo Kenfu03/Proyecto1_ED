@@ -83,7 +83,12 @@ void MainWindow::on_startEjec_clicked()
     int n2 = te.toInt();
     int n3 = tubo.toInt();
 
-    planificador * pl = new planificador(n1, n2, n3);
+    int capMez1 = ui->conMez1->text().toInt();
+    int capMez2 = ui->conMez2->text().toInt();
+    int capMezCho = ui->conMezCho->text().toInt();
+    int capCarrito = ui->conCarrito->text().toInt();
+
+    planificador * pl = new planificador(n1, n2, n3, capMez1, capMez2, capMezCho, capCarrito);
     int total = pl->totalGalle();
     QString _total = QString::number(total);
     ui->resTotal->setText(_total);
