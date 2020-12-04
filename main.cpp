@@ -7,6 +7,16 @@
 
 int main(int argc, char *argv[])
 {
+    Banda * banda = new Banda(1000);
+    banda->addBanda(100);
+    banda->addBanda(200);
+    banda->addBanda(300);
+    banda->addBanda(400);
+    banda->addBanda(600);
+    banda->addBanda(1000);
+    banda->estadisticas();
+    //cout << "La banda entrego: " << banda->entregar()<<endl;
+
     QApplication a(argc, argv);
     MainWindow w;
     w.show();

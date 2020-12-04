@@ -16,8 +16,8 @@ struct ListaCircular;
 struct Galleta;
 struct Repartidor;
 struct Carrito;
-
 template <typename Data>
+
 struct NodoC{
     Data data;
     NodoC * next;
@@ -27,20 +27,16 @@ struct NodoC{
 	
     NodoC(Data d){
         data = d;
-        next = NULL;
-                
+        next = NULL;          
 	}
 
     NodoC(Data _data, NodoC<Data> * _next){
         data = _data;
         next = _next;
     }
-
 	void print(){
         cout << "Dato: " << data << endl;
 	}
-
-
 };
 
 template <typename Data>
@@ -60,7 +56,6 @@ struct Cola{
             while (tmp->next != NULL){
                 tmp = tmp->next;
             }
-
             NodoC<Data>* _new = new NodoC<Data>(dato);
             tmp->next = _new;
         }
@@ -71,10 +66,10 @@ struct Cola{
              return NULL;
         }
         else{
-
-            NodoC<Data>* _del = first;
-            first = first->next;
+            NodoC<Data> * _del = first;
+            cout <<"Dato eliminado: " << _del->data;
             _del->next = NULL;
+            first = first->next;
             return _del;
         }
     }
@@ -89,15 +84,12 @@ struct Cola{
     }
 
     void print(){
-
         cout << "First" << endl;
         NodoC<Data>* tmp = first;
-
         while (tmp != NULL){
             tmp->print();
             tmp = tmp->next;
         }
-
         cout << "Final" << endl;
     }
 
@@ -115,6 +107,16 @@ struct Cola{
             tmp = tmp->next;
         }
         return false;
+    }
+
+    int galleEnbanda(){
+        NodoC<Data> * tmp = first;
+        int galletas = 0;
+        while (tmp != NULL){
+            galletas += tmp->data;
+            tmp = tmp->next;
+        }
+        return galletas;
     }
 };
 
@@ -288,7 +290,6 @@ struct planificador{
     }
 };
 
-
 struct Mez1{
 	int max;
     int cantAct;
@@ -296,7 +297,6 @@ struct Mez1{
     Mez1(int max){
 		this->max = max;
 	}
-
     int recargar(int _masa, int _masaMin){
         int cantSum = cantAct += _masa;
 
@@ -328,7 +328,6 @@ struct Mez1{
     }
 
 
-
 };
 
 struct Carrito{
@@ -348,5 +347,41 @@ struct Carrito{
     void recargar(int _Cho, int _Masa);
     void solicitarCarga(int _Mezc);
     void verificarCarga();//Esta parte ira en el hilo
+};
+
+struct Banda{
+    int tranporte;
+    int carga;
+    int limite;
+    Cola<int> *  banda = new Cola<int>();
+
+    Banda(int _limite){
+        limite = _limite;
+    }
+
+    void addBanda(int dato){
+        if (carga < limite){
+            banda->push(dato);
+            carga += dato;
+        }
+    }
+    int entregar(){
+       if(banda->pull() != NULL){
+            int descarga = banda->pull()->data;
+            carga -= descarga;
+            return descarga;
+       }
+       return 0;
+    }
+
+
+    void estadisticas(){
+        banda->print();
+        //cout << "Maximo de galletas: " << limite << "Cantidad traspotada al momento: "<< banda->galleEnbanda() << endl;
+    }
+
+    void setLimite(int newLimite){
+        limite = newLimite;
+    }
 
 };

@@ -8,7 +8,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-    QPixmap myPix = QPixmap("C:\\Users\\Kenneth Fuentes\\Documents\\GitHub\\Proyecto1_ED\\Img\\interfaz.png");
+    QPixmap myPix = QPixmap("C:\\Users\\fgm_o\\Documents\\GitHub\\Proyecto1_ED\\Img\\interfaz.png");
     ui->label->setPixmap(myPix);
     ui->label->show();
 
