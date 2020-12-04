@@ -15,8 +15,7 @@ struct NodoLista;
 struct ListaCircular;
 struct Galleta;
 struct Repartidor;
-struct Mixer;
-
+struct Carrito;
 
 template <typename Data>
 struct NodoC{
@@ -199,6 +198,7 @@ struct ListaCircular{
 			}
 		return total;
 	}
+
 	// IMPRIMIR LISTA
 	void imprimir()
 	{
@@ -277,25 +277,11 @@ struct planificador{
     }
 };
 
-//El carrito debe de ser configurable en sus cantidades y este debe de ser un hilo
-struct Mixer{
-    Receta  * receta;
-    Repartidor * carro;
-	int min;
-	int max;
-    int gProcesar;
-    Mixer(int gProcesar, int min, int max,Receta * receta, Repartidor * carro){
-		this->min = min;
-		this->max = max;
-        this->gProcesar = gProcesar;
-    }
-
-};
 
 struct Mez1{
 	int max;
     int cantAct;
-
+    Carrito * carro;
     Mez1(int max){
 		this->max = max;
 	}
@@ -320,6 +306,7 @@ struct Mez1{
             return false;
         }
     }
+
     bool isEmpty(){
         if (cantAct == 0){
             return true;
@@ -328,23 +315,9 @@ struct Mez1{
             return false;
         }
     }
-};
 
-struct Repartidor{
-    int gramos;
-    Repartidor(int gramos){
-        this->gramos = gramos;
-    }
-    int entrega(int cantidad){
-        if (gramos <= cantidad){
-            cantidad -= cantidad-gramos;
-        }
-        return cantidad;
 
-    }
-};
-struct Ensambladora{
-	
+
 };
 
 struct Carrito{
@@ -363,6 +336,6 @@ struct Carrito{
     bool isEmpty();
     void recargar(int _Cho, int _Masa);
     void solicitarCarga(int _Mezc);
-    void verificarCarga();
+    void verificarCarga();//Esta parte ira en el hilo
 
 };
