@@ -25,7 +25,7 @@ void Carrito::verificarCarga(){
 
     }
     else{
-        if (listaSolicitud->vFirst()->dato == 111){
+        if (listaSolicitud->vFirst()->data == 111){
 
         }
     }

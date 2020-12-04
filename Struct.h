@@ -106,6 +106,17 @@ struct Cola{
           return first;
     }
     
+    bool isIn(int _dat){
+        NodoC<Data>* tmp = first;
+
+        while (tmp != NULL){
+            if (tmp->data == _dat){
+                return true;
+            }
+            tmp = tmp->next;
+        }
+        return false;
+    }
 };
 
 struct Paquetes{
