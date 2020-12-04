@@ -7,15 +7,17 @@
 
 int main(int argc, char *argv[])
 {
-    Banda * banda = new Banda(1000);
+    /*
+    Banda * banda = new Banda(3);
     banda->addBanda(100);
     banda->addBanda(200);
     banda->addBanda(300);
-    banda->addBanda(400);
-    banda->addBanda(600);
-    banda->addBanda(1000);
+    if (!banda->addBanda(400)){
+         qDebug() << "Excedio el maximo";
+    }
     banda->estadisticas();
-    //cout << "La banda entrego: " << banda->entregar()<<endl;
+    int dato = banda->entregar();
+    */
 
     QApplication a(argc, argv);
     MainWindow w;

@@ -1,5 +1,6 @@
 #include <cstdlib>
 #include <iostream>
+#include <QDebug>
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
@@ -35,7 +36,7 @@ struct NodoC{
         next = _next;
     }
 	void print(){
-        cout << "Dato: " << data << endl;
+        qDebug() <<  "Dato: " << data;
 	}
 };
 
@@ -52,11 +53,11 @@ struct Cola{
             first = new NodoC<Data>(dato);
         }
         else{
-            NodoC<Data>* tmp = first;
+            NodoC<Data> * tmp = first;
             while (tmp->next != NULL){
                 tmp = tmp->next;
             }
-            NodoC<Data>* _new = new NodoC<Data>(dato);
+            NodoC<Data> * _new = new NodoC<Data>(dato);
             tmp->next = _new;
         }
     }
@@ -67,9 +68,8 @@ struct Cola{
         }
         else{
             NodoC<Data> * _del = first;
-            cout <<"Dato eliminado: " << _del->data;
-            _del->next = NULL;
             first = first->next;
+            _del->next = NULL;
             return _del;
         }
     }
@@ -84,13 +84,13 @@ struct Cola{
     }
 
     void print(){
-        cout << "First" << endl;
+        qDebug() <<  "First" << endl;
         NodoC<Data>* tmp = first;
         while (tmp != NULL){
             tmp->print();
             tmp = tmp->next;
         }
-        cout << "Final" << endl;
+         qDebug() << "Final";
     }
 
     NodoC<Data>* vFirst(){
@@ -109,14 +109,14 @@ struct Cola{
         return false;
     }
 
-    int galleEnbanda(){
-        NodoC<Data> * tmp = first;
-        int galletas = 0;
+    int tamano(){
+        int tama = 0;
+        NodoC<Data>* tmp = first;
         while (tmp != NULL){
-            galletas += tmp->data;
+            tama++;
             tmp = tmp->next;
         }
-        return galletas;
+        return tama;
     }
 };
 
@@ -353,31 +353,32 @@ struct Banda{
     int tranporte;
     int carga;
     int limite;
-    Cola<int> *  banda = new Cola<int>();
+    Cola<int> *  cbanda = new Cola<int>();
 
     Banda(int _limite){
         limite = _limite;
     }
 
-    void addBanda(int dato){
-        if (carga < limite){
-            banda->push(dato);
+    bool addBanda(int dato){
+        if (cbanda->tamano() < limite){
+            cbanda->push(dato);
             carga += dato;
+            return true;
         }
+        return false;
     }
+
     int entregar(){
-       if(banda->pull() != NULL){
-            int descarga = banda->pull()->data;
+       if(cbanda->vFirst() != NULL){
+            int descarga = cbanda->pull()->data;
             carga -= descarga;
             return descarga;
        }
        return 0;
     }
 
-
     void estadisticas(){
-        banda->print();
-        //cout << "Maximo de galletas: " << limite << "Cantidad traspotada al momento: "<< banda->galleEnbanda() << endl;
+        cout << "Maximo de galletas: " << limite << "Cantidad traspotada al momento: "<< cbanda->tamano() << endl;
     }
 
     void setLimite(int newLimite){
