@@ -14,10 +14,12 @@ template <typename Data>
 struct Cola;
 struct NodoLista;
 struct ListaCircular;
+struct Receta;
 struct Galleta;
 struct Repartidor;
 struct Mez1;
 struct Carrito;
+struct Banda;
 struct Mez1;
 struct planificador;
 
@@ -280,6 +282,38 @@ struct Receta{
 	}
 };
 
+struct Banda{
+    int tranporte;
+    int carga;
+    int limite;
+    Cola<int> *  cbanda = new Cola<int>();
+
+    Banda(int _limite){
+        limite = _limite;
+    }
+
+    bool addBanda(int dato){//True si lo agrego Falso en otro caso
+        if (cbanda->tamano() < limite){
+            cbanda->push(dato);
+            carga += dato;
+            return true;
+        }
+        return false;
+    }
+
+    int entregar(){
+       if(cbanda->vFirst() != NULL){
+            return cbanda->pull()->data;
+       }
+       return 0;
+    }
+    void setLimite(int newlimite){
+        limite = newlimite;
+    }
+    void estadisticas(){
+        cout << "Maximo de galletas: " << limite << "Cantidad traspotada al momento: "<< cbanda->tamano() << endl;
+    }
+};
 
 struct Carrito{
     int cantCho;
@@ -307,21 +341,29 @@ struct Carrito{
     int getCantMasa();
 
 };
+
 struct Mez1{
     int max;
     int cantAct = 0;
     int numMez;
     Carrito * Carro;
-
-   ;
+    Banda * banda;
 
     Mez1(){
 
     }
+
     Mez1(int max, Carrito * carro, int numMez){
         this->max = max;
         this->Carro = carro;
         this->numMez = numMez;
+    }
+
+    Mez1(int max, Carrito * carro, Banda * _banda, int numMez){
+        this->max = max;
+        this->Carro = carro;
+        this->numMez = numMez;
+        banda = _banda;
     }
 
     int recargar(int _masa){
@@ -340,8 +382,6 @@ struct Mez1{
             return devolver;
         }
     }
-
-
     bool isInsuficiente(int _masaMin){
         if (cantAct < _masaMin){
             return true;
@@ -363,18 +403,35 @@ struct Mez1{
     void mezclar(int _masa){
         if (isInsuficiente(_masa)){
             Carro->solicitarCarga(numMez);
+        }else{
+            if(!banda->addBanda(_masa)){
+                qDebug() << "Pause";
+            }
         }
     }
+};
 
+struct Ensambladora{
+    Banda * bRecep;
+    Banda * bEntrega;
+    Ensambladora(Banda * _bRecep){
+        bRecep = _bRecep;
+    }
+    void procesar(){
+        qDebug() << "Procesando... " << bRecep->entregar();
+    }
 };
 
 struct planificador{
 	ListaCircular * lc;
+    Receta * receta;
     Mez1 * Mezcladora1;
     Mez1 * Mezcladora2;
     Mez1 * MezcladoraCho;
+    Ensambladora * ensam;
     Carrito * Carro;
     int capacMez1, capacMez2, capacMezCho, capacCarrito;
+    int capacBandaMez,capacBandaCho,capacBandaHorno,capacBandaEmpaca;
 
     planificador(int tito, int te, int tubo, int capMez1, int capMez2, int capMezCho, int capCarrito){
 		lc = new ListaCircular();
@@ -386,51 +443,42 @@ struct planificador{
         capacMezCho = capMezCho;
         capacCarrito = capCarrito;
 	}
+
+    planificador(int tito, int te, int tubo, int capMez1, int capMez2, int capMezCho, int capCarrito, int capBandaMez,int capBandaHorno, int masa, int chocolate){
+        lc = new ListaCircular();
+        lc->insertar("Paquetico",tito);
+        lc->insertar("Paquete",te);
+        lc->insertar("Tubo",tubo);
+        capacMez1 = capMez1;
+        capacMez2 = capMez2;
+        capacMezCho = capMezCho;
+        capacCarrito = capCarrito;
+        capacBandaMez = capBandaMez;
+        capacBandaHorno = capBandaHorno;
+        receta = new Receta(masa,chocolate);
+    }
+
     void insertarMas(){
         //Aqui debe de tener algo en pantalla que me pida el tipo y la canitidad a sumar;
         lc->insertar("Paquete",4);
     }
 
-
     int totalGalle(){
         return lc->totalGalletas();
     }
 
-    void empezarProduccion(){
+    void crearProduccion(){
         Carro = new Carrito(capacCarrito, capacCarrito, Mezcladora1, Mezcladora2, MezcladoraCho);
-        Mezcladora1 = new Mez1(capacMez1, Carro, 111);
-        Mezcladora2 = new Mez1(capacMez2, Carro, 222);
-        MezcladoraCho = new Mez1(capacMezCho, Carro, 333);
-
+        Banda * bandaMz = new Banda(capacBandaMez);
+        Mezcladora1 = new Mez1(capacMez1, Carro,bandaMz, 111);
+        Mezcladora2 = new Mez1(capacMez2, Carro,bandaMz, 222);
+        MezcladoraCho = new Mez1(capacMezCho, Carro,new Banda(capacBandaCho), 333);
+        ensam = new Ensambladora(bandaMz);
     }
+
+    void empezarProduccion(){
+        Mezcladora1->mezclar(receta->masa);
+        ensam->procesar();
+    }
+
 };
-
-struct Banda{
-    int tranporte;
-    int carga;
-    int limite;
-    Cola<int> *  cbanda = new Cola<int>();
-
-    bool addBanda(int dato){
-        if (cbanda->tamano() < limite){
-            cbanda->push(dato);
-            carga += dato;
-            return true;
-        }
-        return false;
-    }
-
-    int entregar(){
-       if(cbanda->vFirst() != NULL){
-            int descarga = cbanda->pull()->data;
-            carga -= descarga;
-            return descarga;
-       }
-       return 0;
-    }
-
-    void estadisticas(){
-        cout << "Maximo de galletas: " << limite << "Cantidad traspotada al momento: "<< cbanda->tamano() << endl;
-    }
-};
-
