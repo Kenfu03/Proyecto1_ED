@@ -339,6 +339,8 @@ struct Carrito{
     void verificarCarga();//Esta parte ira en el hilo
     int getCantCho();
     int getCantMasa();
+    void recargarMasa(int _Masa);
+    void recargarCho(int _Cho);
 
 };
 
@@ -366,20 +368,19 @@ struct Mez1{
         banda = _banda;
     }
 
-    int recargar(int _masa){
+    void recargar(int _masa){
         int cantSum = cantAct += _masa;
 
         if (cantSum > max && numMez == 333){
             int devolver = cantSum - max;
             cantAct = max;
-            Carro->recargar(Carro->getCantMasa(), devolver);
-            return devolver;
+            Carro->recargarCho(devolver);
         }
         else{
             int devolver = cantSum - max;
             cantAct = max;
-            Carro->recargar(devolver, Carro->getCantCho());
-            return devolver;
+            qDebug() << "Devolver masa al carro";
+            Carro->recargarMasa(devolver);
         }
     }
     bool isInsuficiente(int _masaMin){
@@ -401,24 +402,41 @@ struct Mez1{
     }
 
     void mezclar(int _masa){
-        if (isInsuficiente(_masa)){
-            Carro->solicitarCarga(numMez);
-        }else{
-            if(!banda->addBanda(_masa)){
-                qDebug() << "Pause";
+        qDebug() << numMez;
+        while (!isInsuficiente(_masa)){
+            qDebug() << "Mezclando en: " << numMez;
+            if(banda->addBanda(_masa)){
+                qDebug() << "+1 banda";
+            }else{
+                qDebug() << "Banda pausada";
             }
         }
+        qDebug() << "Solicito carga la: " << numMez;
+        Carro->solicitarCarga(numMez);
     }
+
 };
 
 struct Ensambladora{
     Banda * bRecep;
     Banda * bEntrega;
+    int cantGalleHechas = 0;
+
     Ensambladora(Banda * _bRecep){
         bRecep = _bRecep;
     }
+
     void procesar(){
+
         qDebug() << "Procesando... " << bRecep->entregar();
+    }
+
+    void fabGalleta(){
+        cantGalleHechas += 1;
+    }
+
+    int getCantGalleHechas(){
+        return cantGalleHechas;
     }
 };
 
@@ -430,10 +448,10 @@ struct planificador{
     Mez1 * MezcladoraCho;
     Ensambladora * ensam;
     Carrito * Carro;
-    int capacMez1, capacMez2, capacMezCho, capacCarrito;
+    int capacMez1, capacMez2, capacMezCho, capacCarrito, cantMasa, cantChoc;
     int capacBandaMez,capacBandaCho,capacBandaHorno,capacBandaEmpaca;
 
-    planificador(int tito, int te, int tubo, int capMez1, int capMez2, int capMezCho, int capCarrito){
+    planificador(int tito, int te, int tubo, int capMez1, int capMez2, int capMezCho, int capCarrito, int _cantMasa, int _cantChoc){
 		lc = new ListaCircular();
         lc->insertar("Paquetico",tito);
         lc->insertar("Paquete",te);
@@ -442,6 +460,8 @@ struct planificador{
         capacMez2 = capMez2;
         capacMezCho = capMezCho;
         capacCarrito = capCarrito;
+        cantMasa = _cantMasa;
+        cantChoc = _cantChoc;
 	}
 
     planificador(int tito, int te, int tubo, int capMez1, int capMez2, int capMezCho, int capCarrito, int capBandaMez,int capBandaHorno, int masa, int chocolate){
@@ -476,8 +496,10 @@ struct planificador{
         ensam = new Ensambladora(bandaMz);
     }
     void empezarProduccion(){
-        Mezcladora1->mezclar(receta->masa);
-        ensam->procesar();
+        Mezcladora1->mezclar(cantMasa);
+        Mezcladora2->mezclar(cantMasa);
+        MezcladoraCho->mezclar(cantChoc);
+        //ensam->procesar();
     }
 
 };
