@@ -17,6 +17,7 @@ SOURCES += \
 HEADERS += \
     Struct.h \
     Thread.h \
+    hilo.h \
     mainwindow.h
 
 FORMS += \

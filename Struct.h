@@ -475,7 +475,6 @@ struct planificador{
         MezcladoraCho = new Mez1(capacMezCho, Carro,new Banda(capacBandaCho), 333);
         ensam = new Ensambladora(bandaMz);
     }
-
     void empezarProduccion(){
         Mezcladora1->mezclar(receta->masa);
         ensam->procesar();
