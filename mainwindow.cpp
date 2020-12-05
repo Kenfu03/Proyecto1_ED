@@ -8,7 +8,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-    QPixmap myPix = QPixmap("C:\\Users\\fgm_o\\Documents\\GitHub\\Proyecto1_ED\\Img\\interfaz.png");
+    QPixmap myPix = QPixmap("C:\\Users\\Kenneth Fuentes\\Documents\\GitHub\\Proyecto1_ED\\Img\\interfaz.png");
     ui->label->setPixmap(myPix);
     ui->label->show();
 
@@ -87,11 +87,16 @@ void MainWindow::on_startEjec_clicked()
     int capMez2 = ui->conMez2->text().toInt();
     int capMezCho = ui->conMezCho->text().toInt();
     int capCarrito = ui->conCarrito->text().toInt();
+    int cantMasa = ui->Inmasa->text().toInt();
+    int cantChoc = ui->InChoc->text().toInt();
 
-    planificador * pl = new planificador(n1, n2, n3, capMez1, capMez2, capMezCho, capCarrito);
+    planificador * pl = new planificador(n1, n2, n3, capMez1, capMez2, capMezCho, capCarrito, cantMasa, cantChoc);
     int total = pl->totalGalle();
     QString _total = QString::number(total);
     ui->resTotal->setText(_total);
+
+    pl->crearProduccion();
+    pl->empezarProduccion();
 
     ui->InTito->setEnabled(false);
     ui->InTe->setEnabled(false);
