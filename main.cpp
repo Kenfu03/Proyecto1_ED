@@ -20,7 +20,9 @@ int main(int argc, char *argv[])
     */
 
     planificador * pl = new planificador(100, 0, 250, 500, 500, 500, 3000,10,20,5,10);
+    pl->crearProduccion();
     pl->empezarProduccion();
+
     QApplication a(argc, argv);
     MainWindow w;
     w.show();
